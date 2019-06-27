@@ -16,6 +16,8 @@ Flickr image.
 
 ## Running the demo
 
+In order to run the demo, you need to have Node v8.9.4 or above.
+
 ```
 git clone https://github.com/rcorrie/react-flickr-slideshow
 cd react-flickr-slideshow
