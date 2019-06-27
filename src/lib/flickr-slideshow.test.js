@@ -95,7 +95,6 @@ describe('FlickrSlideshow Component', () => {
         it('should declare the initial state', async () => {
             const wrapper = shallow(<FlickrSlideshow />)
             const { state } = wrapper.instance()
-            expect(state.counter).toEqual(0)
             expect(state.photoUrl).toEqual(null)
             expect(state.transition).toEqual(null)
         })

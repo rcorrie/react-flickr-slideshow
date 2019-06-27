@@ -8,6 +8,8 @@ exports[`FlickrSlideshow Component Create snapshot 1`] = `
       "backgroundImage": "url(null)",
       "backgroundPosition": "center",
       "backgroundSize": "cover",
+      "height": "100%",
+      "width": "100%",
     }
   }
 />

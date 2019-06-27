@@ -4,7 +4,7 @@ import * as Helpers from './helpers'
 
 const FLOOR_TIME = '1072915200000' // 01/01/2004 @ 12:00am (UTC)
 const SLIDESHOW_INTERVAL = 5000
-const FLICKR_SEARCH_URI = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key={apiKey}&max_upload_date={randomTime}&sort=date-posted-desc&per_page=500&page=0&format=json&nojsoncallback=1'
+const FLICKR_SEARCH_URI = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key={apiKey}&max_upload_date={randomTime}&sort=date-posted-desc&per_page={poolSize}&page=0&format=json&nojsoncallback=1'
 const FLICKR_GET_SIZES_URI = 'https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key={apiKey}&photo_id={photoId}&format=json&nojsoncallback=1'
 
 class FlickrSlideshow extends Component {
@@ -24,7 +24,6 @@ class FlickrSlideshow extends Component {
         super(props)
 
         this.state = {
-            counter:    0,
             photoUrl:   null,
             transition: null,
         }
@@ -33,9 +32,7 @@ class FlickrSlideshow extends Component {
     }
 
     componentDidMount() {
-
         this._showRandomImage()
-
         this._slideshowInterval = setInterval(this._onSlideshowInterval, this.props.interval)
     }
 
@@ -59,9 +56,9 @@ class FlickrSlideshow extends Component {
             const randomTime = Helpers.randomNumber(FLOOR_TIME, timeNow)
 
             /*
-             * Fetch latest 100 photos uploaded by `randomTime`
+             * Fetch latest 500 photos uploaded by `randomTime`
              */
-            const searchRes  = await fetch(Helpers.supplantStr(FLICKR_SEARCH_URI, {randomTime, apiKey}))
+            const searchRes  = await fetch(Helpers.supplantStr(FLICKR_SEARCH_URI, {randomTime, apiKey, poolSize: 500}))
             const searchJson = await searchRes.json()
 
             /*
@@ -90,11 +87,10 @@ class FlickrSlideshow extends Component {
             this.setState({photoUrl: photo.source, transition: false})
             this._onErrorRetryCounter = 0
         } catch(error) {
-
-            /*
-             * In case of an error, let's try again
-             */
             if (this._onErrorRetryCounter < 10) {
+                /*
+                 * In case of an error, try again a maximum of 10 times.
+                 */
                 this._onErrorRetryCounter++
                 await this._showRandomImage()
             }
