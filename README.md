@@ -47,3 +47,9 @@ export function MyCustomApp() {
 
 *Important:* The component will fill it's parent component. If parent
 component has no width or height, the slideshow will not appear.
+
+## Running tests
+
+```
+npm run test
+```
