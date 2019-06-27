@@ -31,7 +31,7 @@ You can use this in your react app, just add this repo to your npm dependencies
 and import it into your project like so:
 
 ```
-import FlickrSlideshow from 'flickr-slideshow'
+import FlickrSlideshow from 'react-flickr-slideshow'
 
 export function MyCustomApp() {
     return <FlickrSlideshow apiKey={'h432joju43io32hk234kj'} interval={10000} />
