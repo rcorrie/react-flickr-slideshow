@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlickrSlideshow Component Create snapshot 1`] = `
+<div
+  className="FlickrSlideshow animated fadeIn"
+  style={
+    Object {
+      "backgroundImage": "url(null)",
+      "backgroundPosition": "center",
+      "backgroundSize": "cover",
+    }
+  }
+/>
+`;
