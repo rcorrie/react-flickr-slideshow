@@ -6,7 +6,7 @@ A react component slideshow of randomly selected Flickr photos.
 
 Flickr does not provide an api to query random images. As a workaround, this
 module selects a random Unix timestamp between the current date and the year 
-2004. 
+2004 (the year Flickr was founded).
 
 Based on the randomly selected date, we query the most recent 500 images uploaded
 to Flickr before said date.
@@ -16,7 +16,7 @@ Flickr image.
 
 ## Running the demo
 
-In order to run the demo, you need to have Node v8.9.4 or above.
+In order to run the demo, you need Node v8.9.4 or above.
 
 ```
 git clone https://github.com/rcorrie/react-flickr-slideshow
@@ -41,11 +41,11 @@ export function MyCustomApp() {
 ### Props
 
 * `apiKey` Required - your [Flickr Api Key](https://www.flickr.com/services/api/misc.api_keys.html)
-* `interval` Optional - the number of milliseconds between each image cycle
+* `interval` Optional - the number of milliseconds between each image cycle. Default is 5000ms.
 
 ### Styling
 
-*Important:* The component will fill it's parent component. If parent
+_**Important:**_ The slideshow will fill it's parent component. If the parent
 component has no width or height, the slideshow will not appear.
 
 ## Running tests
@@ -53,3 +53,8 @@ component has no width or height, the slideshow will not appear.
 ```
 npm run test
 ```
+
+## Todo
+
+* Improve transitions
+* Generate results ahead of time
